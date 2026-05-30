@@ -1,0 +1,107 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Outfit", system-ui, sans-serif;
+  --font-mono: "Fira Code", ui-monospace, monospace;
+}
+
+@keyframes mesh-drift {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(30px, -40px) scale(1.05); }
+  66% { transform: translate(-20px, 20px) scale(0.95); }
+}
+
+@keyframes grid-scroll {
+  from { background-position: 0 0; }
+  to { background-position: 60px 60px; }
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+@keyframes float-y {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-16px); }
+}
+
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+html { scroll-behavior: smooth; }
+body { font-family: var(--font-sans); -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+.font-mono { font-family: var(--font-mono); }
+
+.text-gradient {
+  background: linear-gradient(135deg, #22d3ee, #e879f9, #fb923c);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.text-gradient-shimmer {
+  background: linear-gradient(90deg, #22d3ee, #e879f9, #fb923c, #e879f9, #22d3ee);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: shimmer 4s linear infinite;
+}
+
+.glass { backdrop-filter: blur(20px) saturate(180%); }
+.glass-dark { background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(255, 255, 255, 0.08); }
+.glass-light { background: rgba(255, 255, 255, 0.72); border: 1px solid rgba(0, 0, 0, 0.06); }
+
+.mesh-orb { animation: mesh-drift 12s ease-in-out infinite; }
+.mesh-orb-2 { animation: mesh-drift 16s ease-in-out infinite reverse; }
+.mesh-orb-3 { animation: mesh-drift 20s ease-in-out infinite; animation-delay: -5s; }
+
+.grid-bg {
+  background-image: linear-gradient(rgba(34, 211, 238, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(34, 211, 238, 0.04) 1px, transparent 1px);
+  background-size: 60px 60px;
+  animation: grid-scroll 20s linear infinite;
+}
+
+.grid-bg-light {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 0, 0, 0.04) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+
+.marquee-track { animation: marquee 25s linear infinite; }
+.animate-float-y { animation: float-y 5s ease-in-out infinite; }
+.animate-spin-slow { animation: spin-slow 20s linear infinite; }
+.cursor-blink { animation: blink 1s step-end infinite; }
+.card-glow { position: relative; }
+.skill-bar-fill { transition: width 1.4s cubic-bezier(0.22, 1, 0.36, 1); }
+
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom, #22d3ee, #e879f9);
+  border-radius: 3px;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
